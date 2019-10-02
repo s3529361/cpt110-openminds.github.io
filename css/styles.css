@@ -15,6 +15,7 @@ img {
     margin: 0 auto;
     background: white;
     border-radius:  1em;
+    padding-bottom: 1px;
 }
 
 a:any-link {
@@ -36,14 +37,16 @@ a:hover {
 
 header {
     height: 200px;
-    background: bottom center / cover no-repeat url("../img/main-header.png");
+    background: center no-repeat url("../img/logo.png"), rgb(255, 207, 0);
     color: white;
     border-radius:  1em 1em 0 0;
+    display: flex;
 }
 
 nav {
-    border-bottom: 1px solid darkgray;
     padding-bottom: 0;
+    margin: auto 0 0;
+    width: 100%;
 }
 
 nav ul {
@@ -57,8 +60,8 @@ nav ul {
 nav ul li {
     flex: 1 1 0px;
     text-align: center;
-    border-right: 2px solid darkgray;
-    margin: 0.5em;
+    border-right: 2px solid black;
+    padding: 0.5em;
 }
 
 nav ul li:last-of-type {
@@ -98,3 +101,64 @@ main div::after {
 footer {
     text-align: center;
 }
+
+/*Styles for our team page*/
+
+.team-header {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+}
+
+.member-cell {
+    background: rgb(255, 221, 77);
+    border-right: 1px solid white;
+    transition: all 0.5s ease-in-out;
+}
+
+.member-cell:last-of-type {
+    border-right: none;
+}
+
+.member-cell.selected {
+    background: white;
+
+}
+
+.member-cell.selected .bottom-line {
+    
+    background: rgb(255, 207, 0);
+}
+
+.member-img {
+    width: 75%;
+    margin: 0.5em auto;
+    border-radius: 50%;
+}
+
+.bottom-line {
+    height: 3px;
+    width: 100%;
+    transition: all 0.5s ease-in-out;
+}
+
+h1 {
+    text-align: center;
+}
+
+.container.home {
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.home-main {
+    flex-grow: 1;
+    background: bottom center / cover no-repeat url("../img/homepage-hero.jpg");
+    display: flex;
+}
+
+.mission-text {
+    margin: auto;
+}
+
