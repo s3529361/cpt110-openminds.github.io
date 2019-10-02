@@ -1,6 +1,8 @@
 /* Meet the team specifics */
+preloadImages("homepage-hero.jpg","lachlan-picture.jpg","logo.png");
 
 $(window).on("load", function() {
+    
     setTimeout(function() {$(".home-main").toggleClass("active")}, 1000)
     setTimeout(function() {$(".home-enter").toggleClass("active").click(enterSite)}, 2000)
 
@@ -22,8 +24,12 @@ function changePage(pageTitle)
     $.ajax({
         url: "partials/" + pageTitle + ".html",
         context: document.main}).done(function(data) {
-            $("main").html(data);
+            $("main").html(data).hide().removeClass("home-main").slideDown("slow");
         })
-        $("main").hide().removeClass("home-main").slideDown("slow");
-}
+    }
 
+    function preloadImages() {
+        for (var i = 0; i < arguments.length; i++) {
+          $("<img />").attr("src", "img/" + arguments[i]);
+        }
+      }
