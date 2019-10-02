@@ -1,6 +1,6 @@
 /* Meet the team specifics */
 
-$(document).ready( function() {
+$(window).on("load", function() {
     setTimeout(function() {$(".home-main").toggleClass("active")}, 1000)
     setTimeout(function() {$(".home-enter").toggleClass("active").click(enterSite)}, 2000)
 
