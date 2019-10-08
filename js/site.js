@@ -2,8 +2,7 @@
 preloadImages("homepage-hero.jpg","lachlan-picture.jpg","logo.png");
 
 var memberTarget;
-
-
+var memberScrollOffset;
 
 $(window).on("load", function() {
     
@@ -30,20 +29,12 @@ function changePage(pageTitle)
         cache: false,
         context: document.main}).done(function(data) {
             $("main").html(data).hide().removeClass("home-main").slideDown("slow");
-        })
+            changePageCallbacks(pageTitle)
+        },
+        )
 
-        switch(pageTitle) {
-            case "our-team":
-                    $(document.body).on('click', '.member-cell' ,function(){
-                        if (!$(this).hasClass("selected")) 
-                        {
-                        $(".selected").toggleClass("selected");
-                        $(this).toggleClass("selected");
-                        }
-                    })
-            break;
+        
         }
-    }
 
     function preloadImages() {
         for (var i = 0; i < arguments.length; i++) {
@@ -51,5 +42,22 @@ function changePage(pageTitle)
         }
       }
 
+function changePageCallbacks(pageTitle) {
+    switch(pageTitle) {
+        case "our-team":
 
+                $(document.body).on('click', '.member-cell' ,function(){
+                    if (!$(this).hasClass("selected")) 
+                    {
+                    $(".selected").toggleClass("selected");
+                    $(this).toggleClass("selected");
+                    var scrollOffset =  $(".member-scroll").scrollLeft() - $(".member-scroll").offset().left;
+                    $(".member-scroll").animate({
+                        scrollLeft: ($('#profile-' + $(this).attr("id")).position().left + scrollOffset)
+                    }, 1000);
+                    }
+                })
+        break;
+}
 
+}

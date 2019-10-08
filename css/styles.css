@@ -1,7 +1,7 @@
 /*Global Styles*/
 
 body {
-    background: bottom center / cover no-repeat url("../img/homepage-hero.jpg");
+    background: bottom center / cover no-repeat fixed url("../img/homepage-hero.jpg");
     font-family: 'Lato', sans-serif;
     min-height: 100vh;
 }
@@ -81,8 +81,14 @@ main {
     background: white;
     margin: 0;
     padding: 0;
+}
+
+.member-scroll {
+    margin: 0;
+    padding: 0;
     overflow-x: hidden;
 }
+
 main p, main li {
     text-align: justify;
     line-height: 1.25;
@@ -125,6 +131,8 @@ footer {
     background: rgb(255, 221, 77);
     border-right: 1px solid white;
     transition: all 0.5s ease-in-out;
+    flex-grow: 1;
+    flex-basis: 0;
 }
 
 .member-cell:last-of-type {
@@ -151,6 +159,10 @@ footer {
     height: 3px;
     width: 100%;
     transition: all 0.5s ease-in-out;
+}
+
+.member-name {
+    display: block;
 }
 
 h1 {
@@ -213,6 +225,7 @@ h1 {
 
 .member-profile {
     flex-grow: 1;
+    flex-basis: 0;
     padding: 1.5em;
 }
 
