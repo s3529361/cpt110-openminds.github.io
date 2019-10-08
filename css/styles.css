@@ -1,8 +1,9 @@
 /*Global Styles*/
 
 body {
-    background: silver;
+    background: bottom center / cover no-repeat url("../img/homepage-hero.jpg");
     font-family: 'Lato', sans-serif;
+    min-height: 100vh;
 }
 
 img {
@@ -14,8 +15,8 @@ img {
     max-width: 1024px;
     margin: 0 auto;
     background: white;
-    border-radius:  1em;
     padding-bottom: 1px;
+
 }
 
 a:any-link {
@@ -35,12 +36,18 @@ a:hover {
     padding-top: 1em;
 }
 
+header.inactive {
+    width: 0;
+}
+
 header {
     height: 200px;
     background: center no-repeat url("../img/logo.png"), rgb(255, 207, 0);
     color: white;
-    border-radius:  1em 1em 0 0;
     display: flex;
+    overflow-x: hidden;
+    transition: all 0.5s ease-in-out;
+    width: 100%;
 }
 
 nav {
@@ -70,7 +77,11 @@ nav ul li:last-of-type {
 
 /*Styles for main*/
 main {
-    padding: 0 1.5em;
+    /* background: rgba(255,255,255,0.4); */
+    background: white;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
 }
 main p, main li {
     text-align: justify;
@@ -147,18 +158,61 @@ h1 {
 }
 
 .container.home {
-    height: 85vh;
     display: flex;
     flex-direction: column;
+    background: transparent;
+    min-height: 100vh;
 }
 
 .home-main {
     flex-grow: 1;
-    background: bottom center / cover no-repeat url("../img/homepage-hero.jpg");
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    opacity: 0;
+    transition: all 1s ease;
+    background: transparent;
+}
+
+.home-logo {
+    margin: 0 auto;
+}
+
+.home-enter.active, .home-main.active {
+    opacity: 1;
+}
+
+.home-enter.active {
+    cursor: pointer;
+}
+
+.home-enter {
+    background: rgb(255, 207, 0);
+    width: auto;
+    margin: 3em auto 0;
+    padding: 1em;
+    display: flex;
+    transition: all 1s ease-out;
+    font-weight: bold;
+    font-size: 1.5em;
+    border-top: 1px solid rgb(255, 221, 77);
+    border-left: 1px solid rgb(255, 221, 77);
+    border-bottom: 1px solid rgb(205, 166, 0);
+    border-right: 1px solid rgb(205, 166, 0);
+    opacity: 0;
+    transition: all 1s ease;
+}
+
+.member-container {
+    width: 600%;
     display: flex;
 }
 
-.mission-text {
-    margin: auto;
+.member-profile {
+    flex-grow: 1;
+    padding: 1.5em;
 }
 
