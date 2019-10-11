@@ -229,3 +229,29 @@ h1 {
     padding: 1.5em;
 }
 
+/*Technologies Page*/
+
+.technologies-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2em;
+    margin: 0 2em;
+}
+
+.technologies-preview img {
+    float: left;
+    max-width: 40%;
+    margin: 0 0.5em 0.5em 0;
+}
+
+.technologies-grid div h2 {
+    margin-top: 0;
+}
+
+.noanim {
+    transition: none !important;
+    animation: none !important;
+}
+
+
+

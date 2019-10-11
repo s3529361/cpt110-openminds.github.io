@@ -1,14 +1,43 @@
 /* Meet the team specifics */
-preloadImages("homepage-hero.jpg","lachlan-picture.jpg","logo.png");
-
+if ($("body").data("title") === "index") {preloadImages("homepage-hero.jpg","lachlan-picture.jpg","logo.png");}
 var memberTarget;
 var memberScrollOffset;
 
-$(window).on("load", function() {
-    
-    setTimeout(function() {$(".home-main").toggleClass("active")}, 1000)
-    setTimeout(function() {$(".home-enter").toggleClass("active").click(enterSite)}, 2000)
+$(document).ready(function() {
+    if ($("body").data("title") === "our-team") {
+        $(document.body).on('click', '.member-cell' ,function(){
+        if (!$(this).hasClass("selected")) 
+        {
+        $(".selected").toggleClass("selected");
+        $(this).toggleClass("selected");
+        var scrollOffset =  $(".member-scroll").scrollLeft() - $(".member-scroll").offset().left;
+        $(".member-scroll").animate({
+            scrollLeft: ($('#profile-' + $(this).attr("id")).position().left + scrollOffset)
+        }, 500);
+        }
+    })}
+}
 
+)
+
+$(window).on("load", function() {
+    if ($("body").data("title") === "index") {
+        if (!document.referrer.startsWith(location.origin)) {
+            setTimeout(function() {$(".home-main").toggleClass("active")}, 1000)
+            setTimeout(function() {$(".home-enter").toggleClass("active").click(enterSite)}, 2000)
+        } else {
+            $("header").toggleClass("inactive").toggleClass("noanim");
+            $.ajax({
+                url: "partials/home.html",
+                cache: false,
+                context: document.main}).done(function(data) {
+                    $("main").html(data).removeClass("home-main");
+                },
+                )
+    
+    
+    }
+    }
 }
 )
 
@@ -18,14 +47,9 @@ function enterSite()
     $(".home-enter").toggleClass("active")
 
     $("header").toggleClass("inactive");
-    setTimeout(changePage("our-team"), 1000)
-}
-
-function changePage(pageTitle)
-{
-
+    
     $.ajax({
-        url: "partials/" + pageTitle + ".html",
+        url: "partials/home.html",
         cache: false,
         context: document.main}).done(function(data) {
             $("main").html(data).hide().removeClass("home-main").slideDown("slow");
@@ -34,30 +58,14 @@ function changePage(pageTitle)
         )
 
         
-        }
+}
+
+
+
+
 
     function preloadImages() {
         for (var i = 0; i < arguments.length; i++) {
           $("<img />").attr("src", "img/" + arguments[i]);
         }
       }
-
-function changePageCallbacks(pageTitle) {
-    switch(pageTitle) {
-        case "our-team":
-
-                $(document.body).on('click', '.member-cell' ,function(){
-                    if (!$(this).hasClass("selected")) 
-                    {
-                    $(".selected").toggleClass("selected");
-                    $(this).toggleClass("selected");
-                    var scrollOffset =  $(".member-scroll").scrollLeft() - $(".member-scroll").offset().left;
-                    $(".member-scroll").animate({
-                        scrollLeft: ($('#profile-' + $(this).attr("id")).position().left + scrollOffset)
-                    }, 1000);
-                    }
-                })
-        break;
-}
-
-}
